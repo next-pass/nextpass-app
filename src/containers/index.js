@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {HomePageContainer} from './home';
-// import AuthContainer from './auth';
+import AuthContainer from './auth';
 // import ManagerContainer from './manager'
 
 import {userSession} from '../blockstack-config';

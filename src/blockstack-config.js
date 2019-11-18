@@ -2,7 +2,7 @@ import {UserSession, AppConfig} from 'blockstack';
 import {configure} from 'radiks';
 import {decodeToken} from 'jsontokens';
 
-const RADIKS_URL = `https://${window.location.protocol === 'http:' ? 'radiks-dev.nextpass.com' : 'radiks.nextpass.com'}`;
+const RADIKS_URL = `https://${window.location.protocol === 'http:' ? 'radiks-dev.nextpass.co' : 'radiks.nextpass.co'}`;
 
 const domain = window.location.origin;
 

@@ -16,7 +16,7 @@ import {userSession} from '../../../blockstack-config';
 
 import PassForm from '../../pass-form/index'
 
-import {Row, Col, Container, Button, InputGroup, Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap';
 
 class HomePage extends Component {
   goManager = (e) => {
@@ -37,9 +37,6 @@ class HomePage extends Component {
 
     return (
       <div className="home-page">
-        {user === null &&
-        <span>&nbsp;</span>
-        }
         <Navbar className="main-nav-bar" bg="primary" variant="dark">
           <Container>
             <Navbar.Brand href="#home"><img src={logoImg} alt="Logo"/></Navbar.Brand>

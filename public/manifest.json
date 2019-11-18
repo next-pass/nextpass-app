@@ -1,9 +1,9 @@
 {
-  "short_name": "runkod",
-  "name": "Runkod",
+  "short_name": "nextpass",
+  "name": "nextPass",
   "icons": [
     {
-      "src": "https://runkod.com/manifest.png",
+      "src": "https://nextpass.co/manifest.png",
       "sizes": "128x128",
       "type": "image/png"
     }

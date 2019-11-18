@@ -10,8 +10,7 @@ import PropTypes from 'prop-types';
 
 import {userSession} from '../../../blockstack-config';
 
-
-import logoImg from '../../../images/logo-blue.png'
+import logoImg from '../../../images/text-logo.png'
 
 class AuthPage extends Component {
 
