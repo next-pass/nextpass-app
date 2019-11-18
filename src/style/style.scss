@@ -1,0 +1,83 @@
+@import 'bootstrap';
+@import 'colors';
+
+$sm-break: map-get($grid-breakpoints, "sm");
+$md-break: map-get($grid-breakpoints, "md");
+$lg-break: map-get($grid-breakpoints, "lg");
+$xl-break: map-get($grid-breakpoints, "xl");
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+
+}
+
+body {
+  background-color: #fff;
+}
+
+@import '../components/pages/home/index';
+
+@import '../components/pass-form/index';
+
+/*
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.user-select{
+  user-select: text;
+}
+
+@keyframes logo-loading-anim {
+  0% {
+    opacity: 0.1;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@import '../components/pages/home/index';
+@import '../components/pages/auth/index';
+@import '../components/pages/manager/index';
+@import '../components/pages/manager/navbar';
+@import '../components/pages/manager/notifybar';
+@import '../components/pages/manager/sidemenu';
+@import '../components/pages/manager/project';
+@import '../components/pages/manager/browser/index';
+@import '../components/pages/manager/browser/entry/index';
+@import '../components/pages/manager/browser/upload-zone/index';
+
+
+@import '../components/dialogs/new-project/index';
+@import '../components/dialogs/upload-queue/index';
+@import '../components/dialogs/delete-queue/index';
+@import '../components/dialogs/contact/index';
+@import '../components/dialogs/dns-info/index';
+@import '../components/dialogs/file-info/index';
+@import '../components/dialogs/example-project/index';
+
+@import '../components/helper/message/index';
+@import '../components/helper/checkbox/index';
+
+
+ */

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- default 1`] = `null`;
+
+exports[`2- login 1`] = `
+Object {
+  "image": "https://foo.com/bar.jpg",
+  "username": "username",
+}
+`;
+
+exports[`3- update 1`] = `
+Object {
+  "createdAt": 121331,
+  "image": "https://foo.com/bar.jpg",
+  "username": "username",
+}
+`;
+
+exports[`4- logout 1`] = `null`;

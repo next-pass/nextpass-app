@@ -1,0 +1,17 @@
+{
+  "g": {
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "close": "Close",
+    "delete": "Delete",
+    "save": "Save",
+    "server-error": "An error has occurred"
+  },
+  "manager": {
+  },
+  "a-dialog": {
+  }
+}

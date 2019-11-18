@@ -1,0 +1,55 @@
+{
+  "name": "runkod",
+  "productName": "Runkod",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://runkod.com",
+  "dependencies": {
+    "await-to-js": "^2.1.1",
+    "blockstack": "^19.3.0",
+    "blueimp-md5": "^2.12.0",
+    "bootstrap": "^4.3.1",
+    "connected-react-router": "^6.5.2",
+    "express": "^4.17.1",
+    "history": "^4.9.0",
+    "i18next": "^17.0.12",
+    "i18next-browser-languagedetector": "^3.0.3",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "radiks": "^0.3.0-beta.1",
+    "react": "^16.9.0",
+    "react-app-rewired": "^2.1.3",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-test-renderer": "^16.9.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "typeface-m-plus-rounded-1c": "^0.0.63"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postbuild": "rm -rf build-live && cp -r build build-live && rm -r build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
