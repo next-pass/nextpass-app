@@ -1,7 +1,6 @@
 import reducer, {
   loginAct,
-  logOutAct,
-  updateAct
+  logOutAct
 } from './user';
 
 let state = undefined;
@@ -13,12 +12,6 @@ it('1- default', () => {
 
 it('2- login', () => {
   const act = loginAct({username: 'username', image: 'https://foo.com/bar.jpg'});
-  state = reducer(state, act);
-  expect(state).toMatchSnapshot();
-});
-
-it('3- update', () => {
-  const act = updateAct({createdAt: 121331});
   state = reducer(state, act);
   expect(state).toMatchSnapshot();
 });

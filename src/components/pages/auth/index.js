@@ -4,11 +4,11 @@ eslint-disable jsx-a11y/anchor-is-valid
 
 import React, {Component} from 'react';
 
-import {User} from 'radiks';
+import {User, getConfig} from 'radiks';
+
+import {getUsername} from "../../../blockstack-config";
 
 import PropTypes from 'prop-types';
-
-import {userSession} from '../../../blockstack-config';
 
 import logoImg from '../../../images/text-logo.png'
 
@@ -23,42 +23,69 @@ class AuthPage extends Component {
   }
 
   doAuth = async () => {
-    const {history} = this.props;
+    const {userSession} = getConfig();
 
     if (userSession.isSignInPending()) {
-      let userData;
       try {
-        userData = await userSession.handlePendingSignIn();
-        await User.createWithCurrentUser();
-      } catch (e) {
+        await userSession.handlePendingSignIn();
+      } catch (ex) {
         this.setState(({error: true}));
+        console.error(ex.message);
         return;
       }
 
-      if (userData && userData.username) {
-        let image;
-        try {
-          image = userData.profile.image[0].contentUrl
-        } catch (e) {
-          image = '';
-        }
+      // Radiks throws "Uncaught TypeError: Cannot read property 'attrs' of undefined" error for
+      // non-username accounts. This event handler is a workaround.
+      window.addEventListener('unhandledrejection', this.handleRadiksError);
 
-        const {login} = this.props;
-        login(userData.username, image);
-        history.push('/manager');
-        return;
-      }
+      await User.createWithCurrentUser();
 
-      this.setState(({error: true}));
+      this.doLogin();
     }
+  };
+
+  handleRadiksError = (ex) => {
+    if (ex.reason && ex.reason.message === "Cannot read property 'attrs' of undefined") {
+      this.doLogin();
+      console.error(ex.message);
+      return;
+    }
+
+    this.setState(({error: true}));
+  };
+
+  doLogin = () => {
+    // Remove the radiks event handler.
+    window.removeEventListener('unhandledrejection', this.handleRadiksError);
+
+    const {userSession} = getConfig();
+
+    const userData = userSession.loadUserData();
+    const username = getUsername();
+
+    // Find user profile image
+    let image;
+    try {
+      image = userData.profile.image[0].contentUrl
+    } catch (e) {
+      image = '';
+    }
+
+    const {login, history} = this.props;
+    login(username, image);
+
+    history.push('/manager');
   };
 
   componentDidMount() {
     this.doAuth().then();
   }
 
-  signIn = (e) => {
+  login = (e) => {
     e.preventDefault();
+
+    const {userSession} = getConfig();
+    userSession.signUserOut();
     userSession.redirectToSignIn();
   };
 
@@ -67,10 +94,9 @@ class AuthPage extends Component {
 
     if (error) {
       return <div className="auth-error">
-        <p>Sorry :(</p>
-        <p>We couldn't detect your username.</p>
-        <p>Please make sure you have created your Blockstack account with an username.</p>
-        <p>Please <a href="#" onClick={this.signIn}><strong>click here</strong></a> to try again.</p>
+        <p><strong>Sorry :(</strong></p>
+        <p>Something went wrong.</p>
+        <p><a href="#" onClick={this.login}><strong>Click here</strong></a> to try again.</p>
       </div>;
     }
 

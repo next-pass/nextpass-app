@@ -12,8 +12,7 @@ class ManagerPage extends Component {
   constructor(props) {
     super(props);
 
-    const {fetchProjects} = this.props;
-    fetchProjects();
+
   }
 
   componentDidMount() {
@@ -38,6 +37,7 @@ class ManagerPage extends Component {
     return (
       <div className="manager-page">
 
+        Manager
 
         {(() => {
 

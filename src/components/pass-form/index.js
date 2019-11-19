@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Form, Row, Col, Button, InputGroup, Container} from 'react-bootstrap';
+import {Form, Row, Col, Button, InputGroup} from 'react-bootstrap';
 
 import generatePass from '../../pass';
 
@@ -122,10 +122,11 @@ class PassGenerator extends Component {
           </Col>
         </Form.Group>
 
-        <Form.Group>
-          <Button size="lg" variant="primary" block onClick={this.generate}>Generate Password</Button>
+        <Form.Group as={Row}>
+          <Col sm={12}>
+            <Button size="lg" variant="primary" block onClick={this.generate}>Generate Password</Button>
+          </Col>
         </Form.Group>
-
 
         {pass &&
         <>
@@ -145,12 +146,15 @@ class PassGenerator extends Component {
             </Col>
           </Form.Group>
 
-          <Button size="lg" variant="success" block>Save That Password</Button>
+          <Form.Group as={Row}>
+            <Col sm={12}>
+              <Button size="lg" variant="success" block>Save That Password</Button>
+            </Col>
+          </Form.Group>
         </>
         }
 
       </Form>
-
     </div>
   }
 }

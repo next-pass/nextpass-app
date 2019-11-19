@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import {HomePageContainer} from './home';
 import AuthContainer from './auth';
-// import ManagerContainer from './manager'
+import ManagerContainer from './manager'
 
 import {userSession} from '../blockstack-config';
 
@@ -38,21 +38,11 @@ class App extends Component {
     return (
       <>
         <Route exact path="/" component={HomePageContainer}/>
-      </>
-    );
-  }
-
-  /*
-   render() {
-    return (
-      <>
-        <Route exact path="/" component={HomePageContainer}/>
-         <Route exact path="/auth" component={AuthContainer}/>
+        <Route exact path="/auth" component={AuthContainer}/>
         <Route exact path="/manager" component={ManagerContainer}/>
       </>
     );
   }
-   */
 }
 
 App.defaultProps = {};

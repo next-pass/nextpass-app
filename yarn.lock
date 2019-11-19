@@ -8780,10 +8780,10 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
-radiks@^0.3.0-beta.1:
-  version "0.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/radiks/-/radiks-0.3.0-beta.1.tgz#41e1b2d648e7a6f3390dad0102dfc6e557dcf08e"
-  integrity sha512-0Jk/43sRi7dpxjwzPZF1PH+evOAWOfhLxZD5bc3eaMfXVNaA1lieOmfFCMS3UDuBqPg9+LHilCudzSY0dKBdNA==
+radiks@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/radiks/-/radiks-0.2.1.tgz#11d03c7d7dc6fb662a812c8b865d59ee551f3693"
+  integrity sha512-OYmfQAZ4dBEh3eDIdZbvlHYz4UpEyUpW5t7FJ5n9uUqddDRo4cs4ENozgKSH6ggFeHBbnKA0E9uCE6uSAIt9xA==
   dependencies:
     faker "^4.1.0"
     qs "^6.5.2"
@@ -10644,11 +10644,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-ibm-plex-sans@^0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-ibm-plex-sans/-/typeface-ibm-plex-sans-0.0.75.tgz#47fffee4b9004e9d22300ed99bb679cbeed5c6ff"
-  integrity sha512-IBxDEt5r0Xo5EshGBb1CR1ec3ApNI0jK0o2gSGNZIoKml9q99a/Qcbb8u8IK0x/M+nso8FzcMW03Hz6gSfCIAg==
 
 typeface-m-plus-rounded-1c@^0.0.63:
   version "0.0.63"

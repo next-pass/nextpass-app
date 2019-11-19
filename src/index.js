@@ -11,6 +11,7 @@ import './style/style.scss';
 
 import 'typeface-m-plus-rounded-1c';
 
+import './window';
 
 ReactDOM.render(
   <Provider store={store}>
