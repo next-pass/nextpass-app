@@ -15,7 +15,6 @@
     "name-label": "name (required)",
     "username-label": "username or email (optional)",
     "name-error": "A name is required"
-
   },
   "a-dialog": {
   }

@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import user from './user';
 import ui from './ui';
 import nextPass from './next-pass';
+import entries from './entries';
 
 const createHistory = require('history').createBrowserHistory;
 
@@ -32,7 +33,8 @@ const combinedReducers = combineReducers({
   router: connectRouter(history),
   user,
   ui,
-  nextPass
+  nextPass,
+  entries
 });
 
 export default createStore(

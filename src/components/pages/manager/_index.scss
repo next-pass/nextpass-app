@@ -119,8 +119,6 @@
           text-decoration: underline;
         }
       }
-
-
     }
   }
 
@@ -128,13 +126,12 @@
     height: 100%;
     flex-grow: 1;
 
-
     .entry-list {
       padding: 10px;
 
       .entry-list-header {
         border-bottom: 1px solid $gray-200;
-        padding: 20px;
+        padding: 20px 0;
         display: flex;
         justify-content: space-between;
 
@@ -149,6 +146,32 @@
 
         .entry-list-buttons {
 
+        }
+      }
+
+      .entry-search {
+        padding: 10px 0;
+
+      }
+
+      .entry-body {
+        padding: 4px 0;
+
+        .entry-body-item {
+          padding: 10px 4px;
+          cursor: pointer;
+
+          .item-name {
+            font-weight: 500;
+          }
+
+          &:nth-child(even) {
+            background: $gray-100;
+          }
+
+          &:hover {
+            background: $gray-200;
+          }
         }
       }
     }

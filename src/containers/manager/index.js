@@ -7,6 +7,7 @@ import ManagerPage from '../../components/pages/manager';
 import {login, logout} from '../../store/user';
 import {toggleUiProp} from '../../store/ui';
 import {setNextPass, resetNextPass} from '../../store/next-pass';
+import {fetchEntries} from '../../store/entries';
 
 class ManagerContainer extends Component {
   render() {
@@ -14,10 +15,11 @@ class ManagerContainer extends Component {
   }
 }
 
-const mapStateToProps = ({user, ui, nextPass}) => ({
+const mapStateToProps = ({user, ui, nextPass, entries}) => ({
   user,
   ui,
   nextPass,
+  entries,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -27,7 +29,8 @@ const mapDispatchToProps = dispatch =>
       logout,
       toggleUiProp,
       setNextPass,
-      resetNextPass
+      resetNextPass,
+      fetchEntries
     },
     dispatch
   );
