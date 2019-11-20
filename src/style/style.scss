@@ -21,17 +21,19 @@ body {
   background-color: #fff;
 }
 
-@import '../components/pages/home/index';
-@import '../components/pages/auth/index';
-
-@import '../components/pass-form/index';
-
-/*
 #root {
   height: 100%;
   width: 100%;
 }
 
+@import '../components/pages/home/index';
+@import '../components/pages/auth/index';
+@import '../components/pages/manager/index';
+
+@import '../components/pass-form/index';
+
+
+/*
 .user-select{
   user-select: text;
 }

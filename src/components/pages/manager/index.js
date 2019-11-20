@@ -6,6 +6,11 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
+import {getConfig} from 'radiks';
+
+import logoImg from '../../../images/text-logo.png';
+
+import {logOutSvg} from '../../../svg';
 
 class ManagerPage extends Component {
 
@@ -27,6 +32,15 @@ class ManagerPage extends Component {
 
   };
 
+  logout = () => {
+    const {logout, history} = this.props;
+    const {userSession} = getConfig();
+
+    userSession.signUserOut();
+    logout();
+    history.push('/');
+  };
+
   render() {
     const {ui, user} = this.props;
 
@@ -34,10 +48,36 @@ class ManagerPage extends Component {
       return null;
     }
 
+
     return (
       <div className="manager-page">
 
-        Manager
+        <div className="side-bar">
+          <div className="brand">
+            <img src={logoImg} alt="Logo"/>
+          </div>
+
+          <div className="user-info">
+            <div className="avatar">
+              {(() => {
+                const fLetter = user.username.split('')[0].toUpperCase();
+                return <span className="f-letter">{fLetter}</span>;
+              })()}
+              {user.image && <img src={user.image}/>}
+            </div>
+            <div className="username">{user.username}</div>
+          </div>
+
+          <div className="menu">
+            <span className="menu-item item-logout" onClick={this.logout}>
+              {logOutSvg}Logout
+            </span>
+          </div>
+        </div>
+
+        <div className="content">
+          content
+        </div>
 
         {(() => {
 
@@ -47,6 +87,8 @@ class ManagerPage extends Component {
     )
   }
 }
+
+//
 
 ManagerPage.defaultProps = {
   project: null
