@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {Form, Row, Col, Button, InputGroup} from 'react-bootstrap';
 
@@ -36,6 +37,12 @@ class PassGenerator extends Component {
 
     const pass = generatePass(this.state.length, this.state);
     this.setState({pass});
+  };
+
+  save = () => {
+    const {setNextPass} = this.props;
+    const {pass} = this.state;
+    setNextPass(pass);
   };
 
   render() {
@@ -148,7 +155,7 @@ class PassGenerator extends Component {
 
           <Form.Group as={Row}>
             <Col sm={12}>
-              <Button size="lg" variant="success" block>Save That Password</Button>
+              <Button size="lg" variant="success" block onClick={this.save}>Save That Password</Button>
             </Col>
           </Form.Group>
         </>
@@ -159,4 +166,12 @@ class PassGenerator extends Component {
   }
 }
 
+PassGenerator.defaultProps = {};
+
+PassGenerator.propTypes = {
+  setNextPass: PropTypes.func.isRequired
+};
+
 export default PassGenerator;
+
+

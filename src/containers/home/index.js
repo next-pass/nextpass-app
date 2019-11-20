@@ -6,6 +6,7 @@ import {HomePage} from '../../components/pages/home';
 
 import {login, logout} from '../../store/user';
 import {toggleUiProp} from '../../store/ui';
+import {setNextPass} from '../../store/next-pass';
 
 class HomeContainer extends Component {
   render() {
@@ -23,7 +24,8 @@ const mapDispatchToProps = dispatch =>
     {
       login,
       logout,
-      toggleUiProp
+      toggleUiProp,
+      setNextPass
     },
     dispatch
   );
