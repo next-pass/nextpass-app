@@ -12,6 +12,8 @@ import {getConfig} from 'radiks';
 
 import NewEntryDialog from '../../dialogs/new-entry';
 
+import PassDialog from '../../dialogs/pass';
+
 import logoImg from '../../../images/text-logo.png';
 
 import {logOutSvg} from '../../../svg';
@@ -99,7 +101,7 @@ class ManagerPage extends Component {
           return null;
         })()}
 
-        {ui.passDialog && <span></span>}
+        {ui.passDialog && <PassDialog  {...this.props} />}
         {nextPass && <NewEntryDialog {...this.props} />}
       </div>
     )

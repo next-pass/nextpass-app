@@ -10,7 +10,12 @@
     "save": "Save",
     "server-error": "An error has occurred"
   },
-  "manager": {
+  "new-entry-dialog": {
+    "title": "New Password",
+    "name-label": "name (required)",
+    "username-label": "username or email (optional)",
+    "name-error": "A name is required"
+
   },
   "a-dialog": {
   }
