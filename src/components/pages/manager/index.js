@@ -1,22 +1,16 @@
-/*
-eslint-disable jsx-a11y/anchor-is-valid
-*/
-
 import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
 import {Button, Form, InputGroup} from 'react-bootstrap';
 
-import {getConfig} from 'radiks';
-
 import NewEntryDialog from '../../dialogs/new-entry';
 
 import PassDialog from '../../dialogs/pass';
 
-import logoImg from '../../../images/text-logo.png';
+import SideBar from './sidebar';
 
-import {logOutSvg} from '../../../svg';
+
 import {_t} from "../../../i18n";
 
 class ManagerPage extends Component {
@@ -40,14 +34,6 @@ class ManagerPage extends Component {
     }
   }
 
-  logout = () => {
-    const {logout, history} = this.props;
-    const {userSession} = getConfig();
-
-    userSession.signUserOut();
-    logout();
-    history.push('/');
-  };
 
   newClicked = () => {
     const {toggleUiProp} = this.props;
@@ -63,7 +49,6 @@ class ManagerPage extends Component {
     this.setState({search: e.target.value});
   };
 
-
   render() {
     const {ui, user, nextPass, entries} = this.props;
     const {search} = this.state;
@@ -72,67 +57,45 @@ class ManagerPage extends Component {
       return null;
     }
 
-    let {list: entryList} = entries;
+    let {list: entryList, loading} = entries;
 
     if (search) {
-      entryList = entryList.filter(x => x.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+      entryList = entryList.filter(x => x.name.toLowerCase().indexOf(search.toLowerCase()) !== -1)
     }
-
-    console.log(entryList);
-
-    // We've created some dummy paswords
-
 
     return (
       <div className="manager-page">
-
-        <div className="side-bar">
-          <div className="brand">
-            <img src={logoImg} alt="Logo"/>
-          </div>
-
-          <div className="user-info">
-            <div className="avatar">
-              {(() => {
-                const fLetter = user.username.split('')[0].toUpperCase();
-                return <span className="f-letter">{fLetter}</span>;
-              })()}
-              {user.image && <img src={user.image}/>}
-            </div>
-            <div className="username">{user.username}</div>
-          </div>
-
-          <div className="menu">
-            <span className="menu-item item-logout" onClick={this.logout}>
-              {logOutSvg}Logout
-            </span>
-          </div>
-        </div>
+        <SideBar {...this.props} />
 
         <div className="content">
           <div className="entry-list">
             <div className="entry-list-header">
-              <h2 className="entry-list-title">Passwords</h2>
+              <h2 className="entry-list-title">{_t('manager.title')}</h2>
               <div className="entry-list-buttons">
-                <Button variant="outline-primary" onClick={this.newClicked}>+ New Password</Button>
+                <Button variant="outline-primary" onClick={this.newClicked}>{_t('manager.add-new')}</Button>
               </div>
             </div>
 
             <div className="entry-search">
               <InputGroup>
-                <Form.Control type="text" placeholder="search in passwords" value={search}
+                <Form.Control type="text" placeholder={_t('manager.search-placeholder')} value={search}
                               onChange={this.searchChanged}/>
               </InputGroup>
             </div>
 
             <div className="entry-body">
               {(() => {
+
+                if (loading) {
+                  return null;
+                }
+
                 if (search && entryList.length === 0) {
-                  return 'No match'
+                  return <div className="empty-list">No match</div>;
                 }
 
                 if (entryList.length === 0) {
-                  return 'Nothing here'
+                  return <div className="empty-list">Nothing here</div>;
                 }
 
                 return entryList.map((x, i) => {

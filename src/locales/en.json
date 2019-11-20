@@ -10,6 +10,13 @@
     "save": "Save",
     "server-error": "An error has occurred"
   },
+  "manager": {
+    "logout": "Logout",
+    "title": "Passwords",
+    "add-new": "+ New Password",
+    "search-placeholder": "search",
+    "empty-list": "nothing here"
+  },
   "new-entry-dialog": {
     "title": "New Password",
     "name-label": "name (required)",
