@@ -27,7 +27,7 @@ export const setNextPass = (val) => async (dispatch) => {
 };
 
 export const resetNextPass = () => async (dispatch) => {
-  localStorage.setItem('next-pass', null);
+  localStorage.removeItem('next-pass');
   dispatch(resetAct());
 };
 

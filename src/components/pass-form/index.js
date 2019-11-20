@@ -40,9 +40,10 @@ class PassGenerator extends Component {
   };
 
   save = () => {
-    const {setNextPass} = this.props;
+    const {setNextPass, onSave} = this.props;
     const {pass} = this.state;
     setNextPass(pass);
+    onSave()
   };
 
   render() {
@@ -166,10 +167,14 @@ class PassGenerator extends Component {
   }
 }
 
-PassGenerator.defaultProps = {};
+PassGenerator.defaultProps = {
+  onSave: () => {
+  }
+};
 
 PassGenerator.propTypes = {
-  setNextPass: PropTypes.func.isRequired
+  setNextPass: PropTypes.func.isRequired,
+  onSave: PropTypes.func
 };
 
 export default PassGenerator;

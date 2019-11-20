@@ -5,8 +5,8 @@ import {bindActionCreators} from 'redux';
 import ManagerPage from '../../components/pages/manager';
 
 import {login, logout} from '../../store/user';
-import {toggleUiProp, invalidateUiFlag} from '../../store/ui';
-
+import {toggleUiProp} from '../../store/ui';
+import {setNextPass, resetNextPass} from '../../store/next-pass';
 
 class ManagerContainer extends Component {
   render() {
@@ -14,9 +14,10 @@ class ManagerContainer extends Component {
   }
 }
 
-const mapStateToProps = ({user, ui,}) => ({
+const mapStateToProps = ({user, ui, nextPass}) => ({
   user,
   ui,
+  nextPass,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch =>
       login,
       logout,
       toggleUiProp,
-      invalidateUiFlag
+      setNextPass,
+      resetNextPass
     },
     dispatch
   );

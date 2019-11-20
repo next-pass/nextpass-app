@@ -6,7 +6,11 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
+import {Button} from 'react-bootstrap';
+
 import {getConfig} from 'radiks';
+
+import NewEntryDialog from '../../dialogs/new-entry';
 
 import logoImg from '../../../images/text-logo.png';
 
@@ -16,7 +20,6 @@ class ManagerPage extends Component {
 
   constructor(props) {
     super(props);
-
 
   }
 
@@ -28,10 +31,6 @@ class ManagerPage extends Component {
     }
   }
 
-  newProjectCreated = () => {
-
-  };
-
   logout = () => {
     const {logout, history} = this.props;
     const {userSession} = getConfig();
@@ -41,13 +40,22 @@ class ManagerPage extends Component {
     history.push('/');
   };
 
+  newClicked = () => {
+    const {toggleUiProp} = this.props;
+    toggleUiProp('passDialog');
+  };
+
+  newEntryCreated = () => {
+
+  };
+
+
   render() {
-    const {ui, user} = this.props;
+    const {ui, user, nextPass} = this.props;
 
     if (user === null) {
       return null;
     }
-
 
     return (
       <div className="manager-page">
@@ -76,27 +84,36 @@ class ManagerPage extends Component {
         </div>
 
         <div className="content">
-          content
+          <div className="entry-list">
+            <div className="entry-list-header">
+              <h2 className="entry-list-title">My Passwords</h2>
+              <div className="entry-list-buttons">
+                <Button variant="outline-primary" onClick={this.newClicked}>+ New Password</Button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {(() => {
 
           return null;
         })()}
+
+        {ui.passDialog && <span></span>}
+        {nextPass && <NewEntryDialog {...this.props} />}
       </div>
     )
   }
 }
 
-//
-
 ManagerPage.defaultProps = {
-  project: null
+  nextPass: null
 };
 
 ManagerPage.propTypes = {
+  nextPass: PropTypes.string,
   ui: PropTypes.shape({
-    newProject: PropTypes.bool.isRequired,
+    passDialog: PropTypes.bool.isRequired,
   }).isRequired,
   toggleUiProp: PropTypes.func.isRequired,
   history: PropTypes.shape({

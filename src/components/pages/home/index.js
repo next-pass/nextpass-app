@@ -20,14 +20,18 @@ import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap';
 
 class HomePage extends Component {
   goManager = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
 
     const {history} = this.props;
     history.push('/manager');
   };
 
   login = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
 
     userSession.redirectToSignIn();
   };
@@ -83,7 +87,14 @@ class HomePage extends Component {
             <Col md={12} className="showcase">
               <div className="password-form">
                 <div className="password-form-content">
-                  <PassForm {...this.props} />
+                  <PassForm {...this.props} onSave={() => {
+                    if (user) {
+                      this.goManager();
+                      return;
+                    }
+
+                    this.login();
+                  }}/>
                 </div>
               </div>
             </Col>

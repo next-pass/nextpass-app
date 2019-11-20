@@ -127,6 +127,31 @@
   .content {
     height: 100%;
     flex-grow: 1;
+
+
+    .entry-list {
+      padding: 10px;
+
+      .entry-list-header {
+        border-bottom: 1px solid $gray-200;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .entry-list-title {
+          margin: 0;
+          font-size: 32px;
+          font-weight: 500;
+          color: $gray-800;
+
+
+        }
+
+        .entry-list-buttons {
+
+        }
+      }
+    }
   }
 }
 
