@@ -23,6 +23,9 @@
     "username-label": "username or email (optional)",
     "name-error": "A name is required"
   },
-  "a-dialog": {
+  "pass-form": {
+
+    "copy": "Copy",
+    "copied": "Copied"
   }
 }

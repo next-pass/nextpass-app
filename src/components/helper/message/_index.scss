@@ -1,0 +1,43 @@
+
+.message-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 3px;
+  height: auto;
+  z-index: 99999;
+
+  .message-item {
+    margin: 0 auto 10px auto !important;
+    width: 300px;
+    font-size: 90%;
+
+    .icon {
+      margin-right: 10px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        fill: $white;
+      }
+    }
+
+    .msg-body {
+      width: calc(100% - 52px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.message-item-error {
+      svg {
+        fill: $danger;
+      }
+    }
+
+    &.message-item-success {
+      svg {
+        fill: $success;
+      }
+    }
+  }
+}

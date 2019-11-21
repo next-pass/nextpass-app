@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import {Link} from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 import {getConfig} from 'radiks';
@@ -28,7 +30,9 @@ class SideBar extends Component {
     return (
       <div className="side-bar">
         <div className="brand">
-          <img src={logoImg} alt="Logo"/>
+          <Link to="/">
+            <img src={logoImg} alt="Logo"/>
+          </Link>
         </div>
 
         <div className="user-info">
@@ -37,7 +41,7 @@ class SideBar extends Component {
               const fLetter = user.username.split('')[0].toUpperCase();
               return <span className="f-letter">{fLetter}</span>;
             })()}
-            {user.image && <img src={user.image}/>}
+            {user.image && <img src={user.image} alt="user avatar"/>}
           </div>
           <div className="username">{user.username}</div>
         </div>

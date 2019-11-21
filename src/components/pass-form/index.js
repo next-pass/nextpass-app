@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {Form, Row, Col, Button, InputGroup} from 'react-bootstrap';
+import {Form, Row, Col, Button} from 'react-bootstrap';
+
+import PassInput from '../pass-input';
 
 import generatePass from '../../pass';
 
@@ -139,18 +141,8 @@ class PassGenerator extends Component {
         {pass &&
         <>
           <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column={true} sm={4}>
-              Your New Password:
-            </Form.Label>
-            <Col sm={8}>
-              <InputGroup>
-                <Form.Control readOnly type="text" placeholder="Your new password will appear here."
-                              value={pass}/>
-                <InputGroup.Append>
-                  <Button variant="outline-secondary">Copy</Button>
-                </InputGroup.Append>
-              </InputGroup>
-
+            <Col sm={12}>
+              <PassInput value={pass}/>
             </Col>
           </Form.Group>
 
