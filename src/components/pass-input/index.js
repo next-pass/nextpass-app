@@ -9,6 +9,17 @@ import {_t} from '../../i18n';
 import message from '../helper/message';
 
 class PassInput extends Component {
+
+  constructor(props) {
+    super(props);
+
+    const {defaultHidden} = props;
+
+    this.state = {
+      hidden: defaultHidden
+    }
+  }
+
   input = React.createRef();
 
   copy = () => {
@@ -21,12 +32,34 @@ class PassInput extends Component {
     message.success(_t('pass-form.copied'), 800);
   };
 
+  reveal = () => {
+    this.setState({hidden: false});
+  };
+
+  conceal = () => {
+    this.setState({hidden: true});
+  };
+
   render() {
     const {value} = this.props;
+    const {hidden} = this.state;
 
     return <InputGroup>
-      <Form.Control readOnly type="text" value={value} ref={this.input} onClick={this.copy}/>
+      <Form.Control readOnly type={hidden ? 'password' : 'text'} value={value} ref={this.input} onClick={this.copy}/>
       <InputGroup.Append>
+        {(() => {
+
+
+
+          if (hidden) {
+            return <Button variant="outline-secondary" onClick={this.reveal}>Reveal</Button>
+          }
+
+          if (!hidden) {
+            return <Button variant="outline-secondary" onClick={this.conceal}>Conceal</Button>
+          }
+        })()}
+
         <Button variant="outline-secondary" onClick={this.copy}>{_t('pass-form.copy')}</Button>
       </InputGroup.Append>
     </InputGroup>
@@ -34,11 +67,13 @@ class PassInput extends Component {
 }
 
 PassInput.defaultProps = {
-  value: ''
+  value: '',
+  defaultHidden: true
 };
 
 PassInput.propTypes = {
-  value: PropTypes.string
+  value: PropTypes.string,
+  defaultHidden: PropTypes.bool,
 };
 
 export default PassInput;

@@ -2,16 +2,114 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
+import {Link} from 'react-router-dom';
+
 import {Button, Form, InputGroup} from 'react-bootstrap';
 
 import NewEntryDialog from '../../dialogs/new-entry';
 
+import {getConfig} from 'radiks';
+
 import PassDialog from '../../dialogs/pass';
 
-import SideBar from './sidebar';
+import EntryDialog from '../../dialogs/entry';
+
+import {_t} from '../../../i18n';
+
+import logoImg from '../../../images/text-logo.png';
+
+import {logOutSvg} from '../../../svg';
 
 
-import {_t} from "../../../i18n";
+class SideBar extends Component {
+  logout = () => {
+    const {logout, history} = this.props;
+    const {userSession} = getConfig();
+
+    userSession.signUserOut();
+    logout();
+    history.push('/');
+  };
+
+  render() {
+    const {user} = this.props;
+
+    return (
+      <div className="side-bar">
+        <div className="brand">
+          <Link to="/">
+            <img src={logoImg} alt="Logo"/>
+          </Link>
+        </div>
+
+        <div className="user-info">
+          <div className="avatar">
+            {(() => {
+              const fLetter = user.username.split('')[0].toUpperCase();
+              return <span className="f-letter">{fLetter}</span>;
+            })()}
+            {user.image && <img src={user.image} alt="user avatar"/>}
+          </div>
+          <div className="username">{user.username}</div>
+        </div>
+
+        <div className="menu">
+            <span className="menu-item item-logout" onClick={this.logout}>
+              {logOutSvg}{_t('manager.logout')}
+            </span>
+        </div>
+      </div>
+    )
+  }
+}
+
+SideBar.defaultProps = {
+  nextPass: null
+};
+
+SideBar.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
+  }).isRequired
+};
+
+
+class EntryItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dialog: false
+    }
+  }
+
+  toggleDialog = () => {
+    const {dialog} = this.state;
+    this.setState({dialog: !dialog});
+  };
+
+  render() {
+    const {data} = this.props;
+    const {dialog} = this.state;
+
+    return <>
+      <div className="entry-body-item" onClick={this.toggleDialog}>
+        <div className="item-name">
+          {data.name}
+        </div>
+      </div>
+      {dialog && <EntryDialog {...this.props} data={data} onHide={this.toggleDialog}/>}
+    </>
+  }
+}
+
+
+EntryItem.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired
+  }).isRequired,
+};
 
 class ManagerPage extends Component {
 
@@ -98,13 +196,7 @@ class ManagerPage extends Component {
                   return <div className="empty-list">Nothing here</div>;
                 }
 
-                return entryList.map((x, i) => {
-                  return <div className="entry-body-item" key={i}>
-                    <div className="item-name">
-                      {x.name}
-                    </div>
-                  </div>
-                })
+                return entryList.map((x, i) => <EntryItem {...this.props} data={x} key={i}/>);
               })()}
             </div>
           </div>
