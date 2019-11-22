@@ -17,10 +17,12 @@ export class Entry extends Model {
       type: String
     },
     status: {
-      type: Number
+      type: Number,
+      decrypted: true
     },
     type: {
-      type: Number
+      type: Number,
+      decrypted: true
     },
   }
 }

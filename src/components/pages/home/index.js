@@ -52,7 +52,7 @@ class HomePage extends Component {
               </>
               }
 
-              {user !== null && <Nav.Link href="#" onClick={this.goManager}>Password Manager</Nav.Link>}
+              {user !== null && <Nav.Link className="manager-link" href="#" onClick={this.goManager}>Password Manager</Nav.Link>}
             </Nav>
           </Container>
         </Navbar>

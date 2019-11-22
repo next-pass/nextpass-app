@@ -20,8 +20,8 @@
   },
   "entry-dialog": {
     "title": "New Password",
-    "name-label": "name it ",
-    "username-label": "username or email",
+    "name-label": "name it",
+    "username-label": "username or email (optional)",
     "name-error": "A name is required"
   },
   "pass-input": {
