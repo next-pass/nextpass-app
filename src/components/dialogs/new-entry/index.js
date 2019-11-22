@@ -143,7 +143,7 @@ class NewEntryDialog extends Component {
 
   render() {
     return (
-      <Modal show className="new-entry-dialog" onHide={this.hide}>
+      <Modal show size="lg" centered className="new-entry-dialog" onHide={this.hide}>
         <DialogContent {...this.props} />
       </Modal>
     )

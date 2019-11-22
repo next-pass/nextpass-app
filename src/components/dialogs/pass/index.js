@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {Modal} from 'react-bootstrap';
 
 import PassGenerator from "../../pass-form";
+import {_t} from "../../../i18n";
 
 const defaultProps = {};
 
@@ -20,6 +21,9 @@ class DialogContent extends Component {
 
   render() {
     return <>
+      <Modal.Header>
+        <Modal.Title>{_t('entry-dialog.title')}</Modal.Title>
+      </Modal.Header>
       <Modal.Body>
         <PassGenerator {...this.props} onSave={this.onSave}/>
       </Modal.Body>
@@ -40,7 +44,7 @@ class PassDialog extends Component {
 
   render() {
     return (
-      <Modal show className="pass-dialog" onHide={this.hide}>
+      <Modal show size="lg" centered className="pass-dialog" onHide={this.hide}>
         <DialogContent {...this.props} />
       </Modal>
     )
