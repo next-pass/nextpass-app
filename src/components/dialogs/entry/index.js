@@ -73,15 +73,15 @@ class DialogContent extends Component {
           </Form.Group>
           <Form.Group controlId="form-name">
             <Form.Control ref={this.nameRef} type="text" value={name} onChange={this.nameChanged}
-                          placeholder={_t('new-entry-dialog.name-label')}/>
+                          placeholder={_t('new-entry-dialog.name-label')} maxLength={60}/>
           </Form.Group>
           <Form.Group controlId="form-username">
             <Form.Control type="text" value={username} onChange={this.usernameChanged}
-                          placeholder={_t('new-entry-dialog.username-label')}/>
+                          placeholder={_t('new-entry-dialog.username-label')} maxLength={100}/>
           </Form.Group>
           <Form.Group controlId="form-notes">
             <Form.Control type="text" as="textarea" value={notes} onChange={this.notesChanged}
-                          placeholder="Extra notes" rows="2"/>
+                          placeholder="Extra notes" rows="2" maxLength={1000}/>
           </Form.Group>
         </Form>
       </Modal.Body>
@@ -105,7 +105,7 @@ class EntryDialog extends Component {
 
   render() {
     return (
-      <Modal show centered size="lg" className="new-entry-dialog" onHide={this.hide}>
+      <Modal show centered size="lg" className="entry-dialog" onHide={this.hide}>
         <DialogContent {...this.props} />
       </Modal>
     )
