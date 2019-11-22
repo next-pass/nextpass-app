@@ -14,6 +14,8 @@ import PassDialog from '../../dialogs/pass';
 
 import EntryDialog from '../../dialogs/entry';
 
+import LinearProgress from '../../helper/progress';
+
 import {_t} from '../../../i18n';
 
 import logoImg from '../../../images/text-logo.png';
@@ -166,21 +168,20 @@ class ManagerPage extends Component {
         <SideBar {...this.props} />
 
         <div className="content">
-          <div className="entry-list">
+          <div className={`entry-list ${loading ? 'loading' : ''}`}>
             <div className="entry-list-header">
               <h2 className="entry-list-title">{_t('manager.title')}</h2>
               <div className="entry-list-buttons">
                 <Button variant="outline-primary" onClick={this.newClicked}>{_t('manager.add-new')}</Button>
               </div>
             </div>
-
+            {loading && <LinearProgress/>}
             <div className="entry-search">
               <InputGroup>
                 <Form.Control type="text" placeholder={_t('manager.search-placeholder')} value={search}
                               onChange={this.searchChanged}/>
               </InputGroup>
             </div>
-
             <div className="entry-body">
               {(() => {
 
