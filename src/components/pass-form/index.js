@@ -142,7 +142,7 @@ class PassGenerator extends Component {
         <>
           <Form.Group as={Row} controlId="formHorizontalEmail">
             <Col sm={12}>
-              <PassInput value={pass}/>
+              <PassInput value={pass} canToggle={false}/>
             </Col>
           </Form.Group>
 

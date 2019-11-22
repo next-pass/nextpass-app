@@ -18,10 +18,10 @@
     "search-placeholder": "search",
     "empty-list": "nothing here"
   },
-  "new-entry-dialog": {
+  "entry-dialog": {
     "title": "New Password",
-    "name-label": "name (required)",
-    "username-label": "username or email (optional)",
+    "name-label": "name it ",
+    "username-label": "username or email",
     "name-error": "A name is required"
   },
   "pass-form": {

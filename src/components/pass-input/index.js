@@ -41,15 +41,19 @@ class PassInput extends Component {
   };
 
   render() {
-    const {value} = this.props;
+    const {value, canToggle} = this.props;
     const {hidden} = this.state;
 
+    const inputType = hidden && canToggle ? 'password' : 'text';
+
     return <InputGroup>
-      <Form.Control readOnly type={hidden ? 'password' : 'text'} value={value} ref={this.input} onClick={this.copy}/>
+      <Form.Control readOnly type={inputType} value={value} ref={this.input} onClick={this.copy}/>
       <InputGroup.Append>
         {(() => {
 
-
+          if (!canToggle) {
+            return null;
+          }
 
           if (hidden) {
             return <Button variant="outline-secondary" onClick={this.reveal}>Reveal</Button>
@@ -68,12 +72,14 @@ class PassInput extends Component {
 
 PassInput.defaultProps = {
   value: '',
-  defaultHidden: true
+  defaultHidden: true,
+  canToggle: true
 };
 
 PassInput.propTypes = {
   value: PropTypes.string,
   defaultHidden: PropTypes.bool,
+  canToggle: PropTypes.bool,
 };
 
 export default PassInput;

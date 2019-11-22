@@ -2,13 +2,17 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
-import {Modal, Button, Form} from 'react-bootstrap';
+import {Modal, Button, Form, Col} from 'react-bootstrap';
 
 import to from 'await-to-js';
+
+import PassInput from '../../pass-input';
 
 import {_t} from '../../../i18n';
 
 import {Entry} from '../../../model';
+
+import {ENTRY_STATUS_ON, ENTRY_TYPE_PASSWORD} from '../../../constants';
 
 const defaultProps = {
   onSave: () => {
@@ -48,7 +52,7 @@ class DialogContent extends Component {
     const {nextPass} = this.props;
 
     if (name.trim() === '') {
-      this.setState({error: _t('new-entry-dialog.name-error')});
+      this.setState({error: _t('entry-dialog.name-error')});
       this.nameRef.current.focus();
       return;
     }
@@ -59,7 +63,8 @@ class DialogContent extends Component {
       name,
       username,
       pass: nextPass,
-      status: 1
+      status: ENTRY_STATUS_ON,
+      type: ENTRY_TYPE_PASSWORD
     });
 
     const [err,] = await to(e.save());
@@ -94,26 +99,26 @@ class DialogContent extends Component {
     const {name, username, error, inProgress} = this.state;
 
     return <>
-      <Modal.Header closeButton>
-        <Modal.Title>{_t('new-entry-dialog.title')}</Modal.Title>
+      <Modal.Header>
+        <Modal.Title>{_t('entry-dialog.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
+          <Form.Group controlId="form-password">
+            <PassInput value={nextPass} canToggle={false}/>
+          </Form.Group>
           {error &&
           <p>
             <Form.Text className="text-danger">{error}</Form.Text>
           </p>
           }
-          <Form.Group controlId="form-password">
-            <Form.Control readOnly type="text" value={nextPass}/>
-          </Form.Group>
           <Form.Group controlId="form-name">
             <Form.Control ref={this.nameRef} type="text" value={name} onChange={this.nameChanged}
-                          placeholder={_t('new-entry-dialog.name-label')}/>
+                          placeholder={_t('entry-dialog.name-label')}/>
           </Form.Group>
           <Form.Group controlId="form-username">
             <Form.Control type="text" value={username} onChange={this.usernameChanged}
-                          placeholder={_t('new-entry-dialog.username-label')}/>
+                          placeholder={_t('entry-dialog.username-label')}/>
           </Form.Group>
         </Form>
       </Modal.Body>

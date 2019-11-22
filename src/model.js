@@ -7,18 +7,20 @@ export class Entry extends Model {
     name: {
       type: String
     },
-    pass: {
+    username: {
       type: String
     },
-    username: {
+    pass: {
       type: String
     },
     notes: {
       type: String
     },
     status: {
-      type: Number,
-      decrypted: true
+      type: Number
+    },
+    type: {
+      type: Number
     },
   }
 }
