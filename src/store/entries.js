@@ -4,6 +4,8 @@ import {USER_LOGOUT} from './user';
 
 import {Entry} from '../model';
 
+import {ENTRY_STATUS_ON} from '../constants';
+
 const initialState = {
   loading: false,
   list: [],
@@ -37,7 +39,7 @@ export default (state = initialState, action) => {
 export const fetchEntries = () => async (dispatch) => {
   dispatch(fetchAct());
 
-  const filter = {status: 1, sort: '-createdAt'};
+  const filter = {status: ENTRY_STATUS_ON, sort: '-createdAt'};
   const [err, entries] = await to(Entry.fetchOwnList(filter));
 
   if (err) {
