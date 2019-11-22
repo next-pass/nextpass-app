@@ -24,9 +24,30 @@
     "username-label": "username or email",
     "name-error": "A name is required"
   },
-  "pass-form": {
-
+  "pass-input": {
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "reveal": "Reveal",
+    "conceal": "Conceal"
+  },
+  "pass-form": {
+    "length-label": "Password Length:",
+    "length-help-1": "Strong",
+    "length-help-2": "Very Strong",
+    "length-help-3": "Unbelievable",
+    "lowercase-label": "Include Lowercase Characters:",
+    "lowercase-help": "(e.g. abcdefgh)",
+    "uppercase-label": "Include Uppercase Characters:",
+    "uppercase-help": "(e.g. ABCDEFGH)",
+    "numbers-label": "Include Numbers:",
+    "numbers-help": "(e.g. 123456)",
+    "symbols-label": "Include Symbols:",
+    "symbols-help": "(e.g. @#$%)",
+    "exclude-similar-label": "Exclude Similar Characters:",
+    "exclude-similar-help": "(e.g. i,l,1,L,o,0,O)",
+    "exclude-ambiguous-label": "Exclude Ambiguous Characters:",
+    "exclude-ambiguous-help": "( { } [ ] ( ) / \\ ' \" ` ~ , ; : . < > )",
+    "generate-btn-label": "Generate Password",
+    "save-btn-label": "Save That Password"
   }
 }

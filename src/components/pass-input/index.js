@@ -29,7 +29,7 @@ class PassInput extends Component {
     el.setSelectionRange(0, 99999); /*For mobile devices*/
     document.execCommand('copy');
 
-    message.success(_t('pass-form.copied'), 800);
+    message.success(_t('pass-input.copied'), 800);
   };
 
   reveal = () => {
@@ -56,15 +56,15 @@ class PassInput extends Component {
           }
 
           if (hidden) {
-            return <Button variant="outline-secondary" onClick={this.reveal}>Reveal</Button>
+            return <Button variant="outline-secondary" onClick={this.reveal}>{_t('pass-input.reveal')}</Button>
           }
 
           if (!hidden) {
-            return <Button variant="outline-secondary" onClick={this.conceal}>Conceal</Button>
+            return <Button variant="outline-secondary" onClick={this.conceal}>{_t('pass-input.conceal')}</Button>
           }
         })()}
 
-        <Button variant="outline-secondary" onClick={this.copy}>{_t('pass-form.copy')}</Button>
+        <Button variant="outline-secondary" onClick={this.copy}>{_t('pass-input.copy')}</Button>
       </InputGroup.Append>
     </InputGroup>
   }
