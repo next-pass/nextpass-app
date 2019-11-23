@@ -22,7 +22,6 @@ import logoImg from '../../../images/text-logo.png';
 
 import {logOutSvg} from '../../../svg';
 
-
 class SideBar extends Component {
   logout = () => {
     const {logout, history} = this.props;
@@ -139,7 +138,6 @@ class ManagerPage extends Component {
     }
   }
 
-
   newClicked = () => {
     const {toggleUiProp} = this.props;
     toggleUiProp('passDialog');
@@ -163,6 +161,7 @@ class ManagerPage extends Component {
     }
 
     let {list: entryList, loading} = entries;
+    const realCount = entryList.length;
 
     if (search) {
       entryList = entryList.filter(x => x.name.toLowerCase().indexOf(search.toLowerCase()) !== -1)
@@ -181,12 +180,16 @@ class ManagerPage extends Component {
               </div>
             </div>
             {loading && <LinearProgress/>}
+
+            {realCount > 0 &&
             <div className="entry-search">
               <InputGroup>
                 <Form.Control type="text" placeholder={_t('manager.search-placeholder')} value={search}
                               onChange={this.searchChanged}/>
               </InputGroup>
             </div>
+            }
+
             <div className="entry-body">
               {(() => {
 
