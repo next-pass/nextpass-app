@@ -22,6 +22,7 @@
     "title": "New Password",
     "name-label": "name it",
     "username-label": "username or email (optional)",
+    "notes-label": "Extra notes",
     "name-error": "A name is required"
   },
   "pass-input": {

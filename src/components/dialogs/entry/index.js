@@ -56,6 +56,11 @@ class DialogContent extends Component {
 
   };
 
+  hide = () => {
+    const {onHide} = this.props;
+    onHide();
+  };
+
   render() {
     const {data} = this.props;
     const {name, username, notes, inProgress, error} = this.state;
@@ -72,20 +77,20 @@ class DialogContent extends Component {
             <PassInput {...this.props} value={data.pass}/>
           </Form.Group>
           <Form.Group controlId="form-name">
-            <Form.Control ref={this.nameRef} type="text" value={name} onChange={this.nameChanged}
-                          placeholder={_t('new-entry-dialog.name-label')} maxLength={60}/>
+            <Form.Control ref={this.nameRef} type="text" value={name} onChange={this.nameChanged} maxLength={60}/>
           </Form.Group>
           <Form.Group controlId="form-username">
             <Form.Control type="text" value={username} onChange={this.usernameChanged}
-                          placeholder={_t('new-entry-dialog.username-label')} maxLength={100}/>
+                          placeholder={_t('entry-dialog.username-label')} maxLength={100}/>
           </Form.Group>
           <Form.Group controlId="form-notes">
             <Form.Control type="text" as="textarea" value={notes} onChange={this.notesChanged}
-                          placeholder="Extra notes" rows="2" maxLength={1000}/>
+                          placeholder={_t('entry-dialog.notes-label')} rows="2" maxLength={1000}/>
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <Button variant="secondary" onClick={this.hide} disabled={inProgress}>{_t('g.close')}</Button>
         <Button variant="primary" onClick={this.update} disabled={inProgress}>{_t('g.update')}</Button>
       </Modal.Footer>
     </>
