@@ -47,8 +47,7 @@ class HomePage extends Component {
             <Nav className="ml-auto">
               {user === null &&
               <>
-                <Nav.Link href="#" onClick={this.login}>Login</Nav.Link>
-                <Nav.Link href="#" onClick={this.login}>Sign Up</Nav.Link>
+                <Nav.Link href="#" onClick={this.login}>Login / Register</Nav.Link>
               </>
               }
 
