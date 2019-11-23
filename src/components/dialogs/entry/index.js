@@ -10,10 +10,14 @@ import {_t} from '../../../i18n';
 
 import {Entry as EntryModel} from '../../../model';
 
-import PassInput from "../../pass-input";
+import PassInput from '../../pass-input';
+
+import message from '../../helper/message';
 
 const defaultProps = {
   onHide: () => {
+  },
+  onUpdate: () => {
   }
 };
 
@@ -21,7 +25,8 @@ const propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string.isRequired
   }).isRequired,
-  onHide: PropTypes.func
+  onHide: PropTypes.func,
+  onUpdate: PropTypes.func
 };
 
 class DialogContent extends Component {
@@ -38,7 +43,9 @@ class DialogContent extends Component {
       inProgress: false,
       error: ''
     }
-  }
+  };
+
+  nameRef = React.createRef();
 
   nameChanged = (e) => {
     this.setState({name: e.target.value});
@@ -52,8 +59,48 @@ class DialogContent extends Component {
     this.setState({notes: e.target.value});
   };
 
-  update = () => {
+  update = async () => {
+    this.setState({error: ''});
 
+    const {data} = this.props;
+    const {name} = this.state;
+
+    if (name.trim() === '') {
+      this.setState({error: _t('entry-dialog.name-error')});
+      this.nameRef.current.focus();
+      return;
+    }
+
+    this.setState({inProgress: true});
+
+    const [err, resp] = await to(EntryModel.fetchOwnList({_id: data._id}));
+
+    if (err || resp.length !== 1) {
+      message.error(_t('g.server-error'));
+      this.setState({inProgress: false});
+      return;
+    }
+
+    const {username, notes} = this.state;
+
+    const entry = resp[0];
+
+    entry.update({
+      name, username, notes
+    });
+
+    const [err2,] = await to(entry.save());
+
+    if (err2) {
+      message.error(_t('g.server-error'));
+      this.setState({inProgress: true});
+      return;
+    }
+
+    this.setState({inProgress: false});
+    message.success(_t('g.updated'));
+    const {onUpdate} = this.props;
+    onUpdate();
   };
 
   hide = () => {
@@ -68,16 +115,17 @@ class DialogContent extends Component {
     return <>
       <Modal.Body>
         <Form>
+          <Form.Group controlId="form-password">
+            <PassInput {...this.props} value={data.pass}/>
+          </Form.Group>
           {error &&
           <p>
             <Form.Text className="text-danger">{error}</Form.Text>
           </p>
           }
-          <Form.Group controlId="form-password">
-            <PassInput {...this.props} value={data.pass}/>
-          </Form.Group>
           <Form.Group controlId="form-name">
-            <Form.Control ref={this.nameRef} type="text" value={name} onChange={this.nameChanged} maxLength={60}/>
+            <Form.Control ref={this.nameRef} type="text" value={name} onChange={this.nameChanged}
+                          placeholder={_t('entry-dialog.name-label')} maxLength={60}/>
           </Form.Group>
           <Form.Group controlId="form-username">
             <Form.Control type="text" value={username} onChange={this.usernameChanged}

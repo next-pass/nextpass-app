@@ -86,6 +86,11 @@ class EntryItem extends Component {
     }
   }
 
+  entryUpdated = () => {
+    const {fetchEntries} = this.props;
+    fetchEntries();
+  };
+
   toggleDialog = () => {
     const {dialog} = this.state;
     this.setState({dialog: !dialog});
@@ -101,7 +106,7 @@ class EntryItem extends Component {
           {data.name}
         </div>
       </div>
-      {dialog && <EntryDialog {...this.props} data={data} onHide={this.toggleDialog}/>}
+      {dialog && <EntryDialog {...this.props} data={data} onHide={this.toggleDialog} onUpdate={this.entryUpdated}/>}
     </>
   }
 }

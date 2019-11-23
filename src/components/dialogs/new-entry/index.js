@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
-import {Modal, Button, Form, Col} from 'react-bootstrap';
+import {Modal, Button, Form} from 'react-bootstrap';
 
 import to from 'await-to-js';
 

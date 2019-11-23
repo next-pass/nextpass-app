@@ -8,6 +8,7 @@
     "close": "Close",
     "delete": "Delete",
     "update": "Update",
+    "updated": "Updated",
     "save": "Save",
     "server-error": "An error has occurred"
   },
