@@ -46,6 +46,9 @@ class SideBar extends Component {
         <div className="user-info">
           <div className="avatar">
             {(() => {
+              if(user.image){
+                return null;
+              }
               const fLetter = user.username.split('')[0].toUpperCase();
               return <span className="f-letter">{fLetter}</span>;
             })()}
