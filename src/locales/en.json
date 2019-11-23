@@ -7,9 +7,11 @@
     "submit": "Submit",
     "close": "Close",
     "delete": "Delete",
+    "deleted": "Deleted",
     "update": "Update",
     "updated": "Updated",
     "save": "Save",
+    "are-you-sure": "Are you sure?",
     "server-error": "An error has occurred"
   },
   "manager": {

@@ -12,7 +12,11 @@ import {Entry as EntryModel} from '../../../model';
 
 import PassInput from '../../pass-input';
 
+import ConfirmDialog from '../confirm';
+
 import message from '../../helper/message';
+
+import {ENTRY_STATUS_OFF} from '../../../constants';
 
 const defaultProps = {
   onHide: () => {
@@ -103,6 +107,41 @@ class DialogContent extends Component {
     onUpdate();
   };
 
+  delete = async () => {
+    const {data} = this.props;
+
+    this.setState({inProgress: true});
+
+    const [err, resp] = await to(EntryModel.fetchOwnList({_id: data._id}));
+
+    if (err || resp.length !== 1) {
+      message.error(_t('g.server-error'));
+      this.setState({inProgress: false});
+      return;
+    }
+
+    const entry = resp[0];
+
+    entry.update({
+      status: ENTRY_STATUS_OFF
+    });
+
+    const [err2,] = await to(entry.save());
+
+    if (err2) {
+      message.error(_t('g.server-error'));
+      this.setState({inProgress: true});
+      return;
+    }
+
+    this.setState({inProgress: false}, () => {
+      message.success(_t('g.deleted'));
+      const {onUpdate, onHide} = this.props;
+      onUpdate();
+      onHide();
+    });
+  };
+
   hide = () => {
     const {onHide} = this.props;
     onHide();
@@ -138,6 +177,10 @@ class DialogContent extends Component {
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <ConfirmDialog title={_t('g.are-you-sure')} onConfirm={this.delete}>
+          <Button variant="outline-danger" className="mr-auto" onClick={this.delete}
+                  disabled={inProgress}>{_t('g.delete')}</Button>
+        </ConfirmDialog>
         <Button variant="secondary" onClick={this.hide} disabled={inProgress}>{_t('g.close')}</Button>
         <Button variant="primary" onClick={this.update} disabled={inProgress}>{_t('g.update')}</Button>
       </Modal.Footer>
