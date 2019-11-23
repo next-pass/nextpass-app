@@ -1,3 +1,3 @@
-# Runkod App
+# nextPass
 
-Frontend application of Runkod project
+Frontend application of nextPass project
