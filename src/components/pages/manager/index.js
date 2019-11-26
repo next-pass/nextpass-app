@@ -201,11 +201,11 @@ class ManagerPage extends Component {
                 }
 
                 if (search && entryList.length === 0) {
-                  return <div className="empty-list">No match</div>;
+                  return <div className="empty-list">{_t('manager.no-match')}</div>;
                 }
 
                 if (entryList.length === 0) {
-                  return <div className="empty-list">Nothing here</div>;
+                  return <div className="empty-list">{_t('manager.empty-list')}</div>;
                 }
 
                 return entryList.map((x, i) => <EntryItem {...this.props} data={x} key={i}/>);

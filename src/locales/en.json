@@ -18,8 +18,9 @@
     "logout": "Logout",
     "title": "Passwords",
     "add-new": "+ New Password",
-    "search-placeholder": "search",
-    "empty-list": "nothing here"
+    "search-placeholder": "Filter",
+    "empty-list": "Nothing here",
+    "no-match": "No match"
   },
   "entry-dialog": {
     "title": "New Password",
