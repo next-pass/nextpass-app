@@ -46,7 +46,7 @@ class SideBar extends Component {
         <div className="user-info">
           <div className="avatar">
             {(() => {
-              if(user.image){
+              if (user.image) {
                 return null;
               }
               const fLetter = user.username.split('')[0].toUpperCase();
@@ -78,59 +78,17 @@ SideBar.propTypes = {
   }).isRequired
 };
 
-
-class EntryItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dialog: false
-    }
-  }
-
-  entryUpdated = () => {
-    const {fetchEntries} = this.props;
-    fetchEntries();
-  };
-
-  toggleDialog = () => {
-    const {dialog} = this.state;
-    this.setState({dialog: !dialog});
-  };
-
-  render() {
-    const {data} = this.props;
-    const {dialog} = this.state;
-
-    return <>
-      <div className="entry-body-item" onClick={this.toggleDialog}>
-        <div className="item-name">
-          {data.name}
-        </div>
-      </div>
-      {dialog && <EntryDialog {...this.props} data={data} onHide={this.toggleDialog} onUpdate={this.entryUpdated}/>}
-    </>
-  }
-}
-
-
-EntryItem.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }).isRequired,
-};
-
 class ManagerPage extends Component {
 
   constructor(props) {
     super(props);
 
-    const {fetchEntries} = this.props;
-    fetchEntries();
-
     this.state = {
-      search: ''
-    }
+      search: '',
+      entry: null
+    };
+
+    this.loadEntries();
   }
 
   componentDidMount() {
@@ -146,7 +104,7 @@ class ManagerPage extends Component {
     toggleUiProp('passDialog');
   };
 
-  newEntryCreated = () => {
+  loadEntries = () => {
     const {fetchEntries} = this.props;
     fetchEntries();
   };
@@ -155,9 +113,17 @@ class ManagerPage extends Component {
     this.setState({search: e.target.value});
   };
 
+  entryClicked = (entry) => {
+    this.setState({entry});
+  };
+
+  toggleDialog = () => {
+    this.setState({entry: null});
+  };
+
   render() {
     const {ui, user, nextPass, entries} = this.props;
-    const {search} = this.state;
+    const {search, entry} = this.state;
 
     if (user === null) {
       return null;
@@ -193,6 +159,10 @@ class ManagerPage extends Component {
             </div>
             }
 
+            {entry &&
+            <EntryDialog {...this.props} data={entry} onHide={this.toggleDialog} onUpdate={this.loadEntries}/>
+            }
+
             <div className="entry-body">
               {(() => {
 
@@ -208,13 +178,20 @@ class ManagerPage extends Component {
                   return <div className="empty-list">{_t('manager.empty-list')}</div>;
                 }
 
-                return entryList.map((x, i) => <EntryItem {...this.props} data={x} key={i}/>);
+                return entryList.map((x, i) =>
+                  <div className="entry-body-item" onClick={() => {
+                    this.entryClicked(x)
+                  }} key={i}>
+                    <div className="item-name">
+                      {x.name}
+                    </div>
+                  </div>);
               })()}
             </div>
           </div>
         </div>
         {ui.passDialog && <PassDialog  {...this.props} />}
-        {nextPass && <NewEntryDialog {...this.props} onSave={this.newEntryCreated}/>}
+        {nextPass && <NewEntryDialog {...this.props} onSave={this.loadEntries}/>}
       </div>
     )
   }
