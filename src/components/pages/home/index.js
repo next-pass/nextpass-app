@@ -70,9 +70,9 @@ class HomePage extends Component {
                   <div className="feature">
                     {coctailSvg} Free to use
                   </div>
-                  <div className="feature">
+                  <a className="feature" href="https://blockstack.org">
                     {shieldSvg} Secured by Blockstack
-                  </div>
+                  </a>
                 </div>
               </Col>
               <Col md={6} className="hero-image">
