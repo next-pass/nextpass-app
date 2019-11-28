@@ -190,10 +190,10 @@ class ManagerPage extends Component {
                     <div className="item-name">
                       {x.name}
                     </div>
-                    <div className="item-edit" onClick={() => {
-                      this.entryClicked(x)
-                    }}>
-                      <span title={_t('g.edit')}>{editSvg}</span>
+                    <div className="item-edit">
+                      <span title={_t('g.edit')} onClick={() => {
+                        this.entryClicked(x)
+                      }}>{editSvg}</span>
                     </div>
                   </div>);
               })()}
