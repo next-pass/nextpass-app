@@ -11,6 +11,7 @@
     "update": "Update",
     "updated": "Updated",
     "save": "Save",
+    "edit": "Edit",
     "are-you-sure": "Are you sure?",
     "server-error": "An error has occurred"
   },
@@ -20,7 +21,8 @@
     "add-new": "+ New Password",
     "search-placeholder": "Filter",
     "empty-list": "Nothing here",
-    "no-match": "No match"
+    "no-match": "No match",
+    "copy-clipboard": "Copy the password to clipboard"
   },
   "entry-dialog": {
     "title": "New Password",

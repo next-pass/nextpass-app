@@ -16,11 +16,13 @@ import EntryDialog from '../../dialogs/entry';
 
 import LinearProgress from '../../helper/progress';
 
+import Clipboard from '../../helper/clipboard';
+
 import {_t} from '../../../i18n';
 
 import logoImg from '../../../images/text-logo.png';
 
-import {logOutSvg} from '../../../svg';
+import {logOutSvg, clipboardSvg, editSvg} from '../../../svg';
 
 class SideBar extends Component {
   logout = () => {
@@ -179,11 +181,19 @@ class ManagerPage extends Component {
                 }
 
                 return entryList.map((x, i) =>
-                  <div className="entry-body-item" onClick={() => {
-                    this.entryClicked(x)
-                  }} key={i}>
+                  <div className="entry-body-item" key={i}>
+                    <div className="item-copy">
+                      <Clipboard value={x.pass}>
+                        <span title={_t('manager.copy-clipboard')}>{clipboardSvg}</span>
+                      </Clipboard>
+                    </div>
                     <div className="item-name">
                       {x.name}
+                    </div>
+                    <div className="item-edit" onClick={() => {
+                      this.entryClicked(x)
+                    }}>
+                      <span title={_t('g.edit')}>{editSvg}</span>
                     </div>
                   </div>);
               })()}

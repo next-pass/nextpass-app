@@ -9,6 +9,7 @@ class Clipboard extends Component {
 
   copy = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     const {value} = this.props;
 

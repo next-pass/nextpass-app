@@ -156,7 +156,6 @@
 
       .entry-search {
         padding: 10px 0;
-
       }
 
       .entry-body {
@@ -170,10 +169,44 @@
 
         .entry-body-item {
           padding: 10px 4px;
-          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          .item-copy, .item-edit {
+            opacity: 0.3;
+            transition: opacity .6s;
+            width: 34px;
+            text-align: center;
+
+
+            svg {
+              width: 24px;
+              height: 24px;
+              cursor: pointer;
+            }
+          }
+
+          .item-copy {
+            margin-right: 10px;
+
+            svg {
+              fill: lighten($purple, 14);
+              color: lighten($purple, 14);
+            }
+          }
+
+          .item-edit {
+            svg {
+              fill: $primary;
+              color: $primary;
+            }
+          }
 
           .item-name {
             font-weight: 500;
+            font-size: 20px;
+            cursor: default;
+            flex-grow: 1;
           }
 
           &:nth-child(even) {
@@ -182,6 +215,10 @@
 
           &:hover {
             background: $gray-200;
+
+            .item-copy, .item-edit {
+              opacity: 1;
+            }
           }
         }
       }
