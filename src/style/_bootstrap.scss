@@ -1,8 +1,14 @@
-
 $font-family-base: 'M PLUS Rounded 1c', sans-serif;
 
 $blue: #4d9aff;
 $red: #d73865;
 $green: #01796F;
 
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+$input-placeholder-color: $gray-500;
+
+
 @import '~bootstrap/scss/bootstrap';
+
