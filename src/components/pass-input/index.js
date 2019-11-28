@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 
 import {Button, Form, InputGroup} from 'react-bootstrap';
 
+import Clipboard from '../helper/clipboard';
+
 import {_t} from '../../i18n';
 
-import message from '../helper/message';
-
 class PassInput extends Component {
-
   constructor(props) {
     super(props);
 
@@ -19,18 +18,6 @@ class PassInput extends Component {
       hidden: defaultHidden
     }
   }
-
-  input = React.createRef();
-
-  copy = () => {
-    const el = this.input.current;
-
-    el.select();
-    el.setSelectionRange(0, 99999); /*For mobile devices*/
-    document.execCommand('copy');
-
-    message.success(_t('pass-input.copied'), 800);
-  };
 
   reveal = () => {
     this.setState({hidden: false});
@@ -47,10 +34,19 @@ class PassInput extends Component {
     const inputType = hidden && canToggle ? 'password' : 'text';
 
     return <InputGroup>
-      <Form.Control readOnly type={inputType} value={value} ref={this.input} onClick={this.copy}/>
+      {(() => {
+
+        if (inputType === 'text') {
+          return <Clipboard value={value}>
+            <Form.Control readOnly type={inputType} value={value}/>
+          </Clipboard>;
+        }
+
+        return <Form.Control readOnly type={inputType} value={value}/>;
+      })()}
+
       <InputGroup.Append>
         {(() => {
-
           if (!canToggle) {
             return null;
           }
@@ -64,7 +60,9 @@ class PassInput extends Component {
           }
         })()}
 
-        <Button variant="outline-secondary" onClick={this.copy}>{_t('pass-input.copy')}</Button>
+        <Clipboard value={value}>
+          <Button variant="outline-secondary">{_t('pass-input.copy')}</Button>
+        </Clipboard>
       </InputGroup.Append>
     </InputGroup>
   }

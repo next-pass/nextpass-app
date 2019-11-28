@@ -31,9 +31,11 @@
   },
   "pass-input": {
     "copy": "Copy",
-    "copied": "Copied",
     "reveal": "Reveal",
     "conceal": "Conceal"
+  },
+  "clipboard": {
+    "copied": "Copied"
   },
   "pass-form": {
     "length-label": "Password Length:",
