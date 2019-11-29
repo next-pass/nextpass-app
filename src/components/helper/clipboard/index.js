@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import message from '../message';
-import {_t} from "../../../i18n";
+
+import {_t} from '../../../i18n';
 
 class Clipboard extends Component {
 

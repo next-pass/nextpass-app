@@ -37,7 +37,7 @@
     "conceal": "Conceal"
   },
   "clipboard": {
-    "copied": "Copied"
+    "copied": "Copied to clipboard"
   },
   "pass-form": {
     "length-label": "Password Length:",
