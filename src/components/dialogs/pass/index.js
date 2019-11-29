@@ -21,7 +21,7 @@ class DialogContent extends Component {
 
   render() {
     return <>
-      <Modal.Header>
+      <Modal.Header closeButton>
         <Modal.Title>{_t('entry-dialog.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>

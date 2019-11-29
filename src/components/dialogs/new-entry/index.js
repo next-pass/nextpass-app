@@ -99,7 +99,7 @@ class DialogContent extends Component {
     const {name, username, error, inProgress} = this.state;
 
     return <>
-      <Modal.Header>
+      <Modal.Header closeButton>
         <Modal.Title>{_t('entry-dialog.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
