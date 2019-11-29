@@ -57,6 +57,6 @@
     "exclude-ambiguous-label": "Exclude Ambiguous Characters:",
     "exclude-ambiguous-help": "( { } [ ] ( ) / \\ ' \" ` ~ , ; : . < > )",
     "generate-btn-label": "Generate Password",
-    "save-btn-label": "Save That Password"
+    "save-btn-label": "Save This Password Securely"
   }
 }

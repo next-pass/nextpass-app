@@ -10,6 +10,8 @@ import generatePass from '../../pass';
 
 import {_t} from '../../i18n';
 
+import {cogsSvg, saveSvg} from '../../svg';
+
 class PassGenerator extends Component {
   constructor(props) {
     super(props);
@@ -131,7 +133,8 @@ class PassGenerator extends Component {
         <Form.Group as={Row}>
           <Col sm={12}>
             <Button size="lg" variant="primary" block
-                    onClick={this.generate}>{_t('pass-form.generate-btn-label')}</Button>
+                    onClick={this.generate}><span
+              className="btn-svg">{cogsSvg}</span> {_t('pass-form.generate-btn-label')}</Button>
           </Col>
         </Form.Group>
         {pass &&
@@ -143,7 +146,8 @@ class PassGenerator extends Component {
           </Form.Group>
           <Form.Group as={Row}>
             <Col sm={12}>
-              <Button size="lg" variant="success" block onClick={this.save}>{_t('pass-form.save-btn-label')}</Button>
+              <Button size="lg" variant="success" block onClick={this.save}><span
+                className="btn-svg">{saveSvg}</span> {_t('pass-form.save-btn-label')}</Button>
             </Col>
           </Form.Group>
         </>
