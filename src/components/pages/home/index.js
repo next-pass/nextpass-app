@@ -71,7 +71,7 @@ class HomePage extends Component {
                   <div className="feature">
                     {coctailSvg} Free to use
                   </div>
-                  <a className="feature" href="https://blockstack.org" target="_blank" without
+                  <a className="feature" href="https://blockstack.org" target="_blank"
                      rel="noopener noreferrer">
                     {shieldSvg} Secured by Blockstack
                   </a>
