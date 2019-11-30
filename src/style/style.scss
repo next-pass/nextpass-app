@@ -27,12 +27,12 @@ body {
 }
 
 
-
 @import '../components/pages/home/index';
 @import '../components/pages/auth/index';
 @import '../components/pages/manager/index';
 
 @import '../components/pass-form/index';
+@import '../components/pass-input/index';
 
 @import '../components/helper/message/index';
 @import '../components/helper/progress/index';
@@ -40,55 +40,3 @@ body {
 @import '../components/dialogs/entry/index';
 @import '../components/dialogs/new-entry/index';
 @import '../components/dialogs/pass/index';
-
-/*
-.user-select{
-  user-select: text;
-}
-
-@keyframes logo-loading-anim {
-  0% {
-    opacity: 0.1;
-  }
-  10% {
-    opacity: 0.2;
-  }
-  20% {
-    opacity: 0.3;
-  }
-  30% {
-    opacity: 0.4;
-  }
-  60% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-@import '../components/pages/home/index';
-@import '../components/pages/auth/index';
-@import '../components/pages/manager/index';
-@import '../components/pages/manager/navbar';
-@import '../components/pages/manager/notifybar';
-@import '../components/pages/manager/sidemenu';
-@import '../components/pages/manager/project';
-@import '../components/pages/manager/browser/index';
-@import '../components/pages/manager/browser/entry/index';
-@import '../components/pages/manager/browser/upload-zone/index';
-
-
-@import '../components/dialogs/new-project/index';
-@import '../components/dialogs/upload-queue/index';
-@import '../components/dialogs/delete-queue/index';
-@import '../components/dialogs/contact/index';
-@import '../components/dialogs/dns-info/index';
-@import '../components/dialogs/file-info/index';
-@import '../components/dialogs/example-project/index';
-
-@import '../components/helper/message/index';
-@import '../components/helper/checkbox/index';
-
-
- */

@@ -38,11 +38,11 @@ class PassInput extends Component {
 
         if (inputType === 'text') {
           return <Clipboard value={value}>
-            <Form.Control readOnly type={inputType} value={value}/>
+            <Form.Control readOnly type={inputType} value={value} className="pass-input"/>
           </Clipboard>;
         }
 
-        return <Form.Control readOnly type={inputType} value={value}/>;
+        return <Form.Control readOnly type={inputType} value={value} className="pass-input"/>;
       })()}
 
       <InputGroup.Append>

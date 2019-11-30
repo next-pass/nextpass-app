@@ -43,7 +43,7 @@ class HomePage extends Component {
       <div className="home-page">
         <Navbar className="main-nav-bar" bg="primary" variant="dark">
           <Container>
-            <Navbar.Brand href="#home"><img src={logoImg} alt="Logo"/></Navbar.Brand>
+            <Navbar.Brand><img src={logoImg} alt="Logo"/></Navbar.Brand>
             <Nav className="ml-auto">
               {user === null &&
               <>
@@ -51,7 +51,8 @@ class HomePage extends Component {
               </>
               }
 
-              {user !== null && <Nav.Link className="manager-link" href="#" onClick={this.goManager}>Password Manager</Nav.Link>}
+              {user !== null &&
+              <Nav.Link className="manager-link" href="#" onClick={this.goManager}>Password Manager</Nav.Link>}
             </Nav>
           </Container>
         </Navbar>
@@ -70,7 +71,8 @@ class HomePage extends Component {
                   <div className="feature">
                     {coctailSvg} Free to use
                   </div>
-                  <a className="feature" href="https://blockstack.org">
+                  <a className="feature" href="https://blockstack.org" target="_blank" without
+                     rel="noopener noreferrer">
                     {shieldSvg} Secured by Blockstack
                   </a>
                 </div>
