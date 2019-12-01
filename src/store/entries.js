@@ -41,10 +41,10 @@ export const fetchEntries = () => async (dispatch) => {
 
   if (err) {
     dispatch(fetchErrorAct());
-    return
+    return;
   }
 
-  dispatch(fetchedAct(entries));
+  dispatch(fetchedAct(entries ? entries : []));
 
   return entries;
 };

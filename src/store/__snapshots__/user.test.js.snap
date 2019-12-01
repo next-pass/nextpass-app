@@ -9,12 +9,4 @@ Object {
 }
 `;
 
-exports[`3- update 1`] = `
-Object {
-  "createdAt": 121331,
-  "image": "https://foo.com/bar.jpg",
-  "username": "username",
-}
-`;
-
 exports[`4- logout 1`] = `null`;

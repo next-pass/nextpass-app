@@ -2,7 +2,7 @@ import {userSession} from './blockstack-config';
 
 import uuid from './utils/rnd';
 
-const FILE_PATH = 'entries.db';
+const FILE_PATH = 'entries.dbx';
 
 export const getEntries = () => {
   return userSession.getFile(FILE_PATH).then(resp => JSON.parse(resp));
@@ -19,9 +19,8 @@ export const addEntry = async (props) => {
 
   const newEntries = [...entries, newEntry];
 
-  return userSession.putFile(FILE_PATH, JSON.stringify(newEntries), {encrypt: true});
+  return save(newEntries);
 };
-
 
 export const updateEntry = async (id, props) => {
   let entries = await getEntries();
@@ -38,7 +37,7 @@ export const updateEntry = async (id, props) => {
 
   const newEntries = [updated, ...rest];
 
-  return userSession.putFile(FILE_PATH, JSON.stringify(newEntries), {encrypt: true});
+  return save(newEntries);
 };
 
 export const deleteEntry = async (id) => {
@@ -46,5 +45,9 @@ export const deleteEntry = async (id) => {
 
   const newEntries = entries.filter(x => x._id !== id);
 
-  return userSession.putFile(FILE_PATH, JSON.stringify(newEntries), {encrypt: true});
+  return save(newEntries);
+};
+
+export const save = async (data) => {
+  return userSession.putFile(FILE_PATH, JSON.stringify(data), {encrypt: true});
 };
