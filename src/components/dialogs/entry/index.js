@@ -8,15 +8,13 @@ import to from 'await-to-js';
 
 import {_t} from '../../../i18n';
 
-import {Entry as EntryModel} from '../../../model';
-
 import PassInput from '../../pass-input';
 
 import ConfirmDialog from '../confirm';
 
 import message from '../../helper/message';
 
-import {ENTRY_STATUS_OFF} from '../../../constants';
+import {deleteEntry, updateEntry} from '../../../dbl';
 
 const defaultProps = {
   onHide: () => {
@@ -77,27 +75,13 @@ class DialogContent extends Component {
 
     this.setState({inProgress: true});
 
-    const [err, resp] = await to(EntryModel.fetchOwnList({_id: data._id}));
-
-    if (err || resp.length !== 1) {
-      message.error(_t('g.server-error'));
-      this.setState({inProgress: false});
-      return;
-    }
-
     const {username, notes} = this.state;
 
-    const entry = resp[0];
-
-    entry.update({
-      name, username, notes
-    });
-
-    const [err2,] = await to(entry.save());
+    const [err2,] = await to(updateEntry(data._id, {name, username, notes}));
 
     if (err2) {
       message.error(_t('g.server-error'));
-      this.setState({inProgress: true});
+      this.setState({inProgress: false});
       return;
     }
 
@@ -112,23 +96,9 @@ class DialogContent extends Component {
 
     this.setState({inProgress: true});
 
-    const [err, resp] = await to(EntryModel.fetchOwnList({_id: data._id}));
+    const [err,] = await to(deleteEntry(data._id));
 
-    if (err || resp.length !== 1) {
-      message.error(_t('g.server-error'));
-      this.setState({inProgress: false});
-      return;
-    }
-
-    const entry = resp[0];
-
-    entry.update({
-      status: ENTRY_STATUS_OFF
-    });
-
-    const [err2,] = await to(entry.save());
-
-    if (err2) {
+    if (err) {
       message.error(_t('g.server-error'));
       this.setState({inProgress: true});
       return;

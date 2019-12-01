@@ -10,9 +10,9 @@ import PassInput from '../../pass-input';
 
 import {_t} from '../../../i18n';
 
-import {Entry} from '../../../model';
+import {ENTRY_TYPE_PASSWORD} from '../../../constants';
 
-import {ENTRY_STATUS_ON, ENTRY_TYPE_PASSWORD} from '../../../constants';
+import {addEntry} from '../../../dbl';
 
 const defaultProps = {
   onSave: () => {
@@ -59,15 +59,12 @@ class DialogContent extends Component {
 
     this.setState({inProgress: true});
 
-    const e = new Entry({
+    const [err,] = await to(addEntry({
       name,
       username,
       pass: nextPass,
-      status: ENTRY_STATUS_ON,
       type: ENTRY_TYPE_PASSWORD
-    });
-
-    const [err,] = await to(e.save());
+    }));
 
     if (err) {
       this.setState({error: _t('g.server-error'), inProgress: false});

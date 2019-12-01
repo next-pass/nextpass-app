@@ -2,9 +2,7 @@ import to from 'await-to-js';
 
 import {USER_LOGOUT} from './user';
 
-import {Entry} from '../model';
-
-import {ENTRY_STATUS_ON} from '../constants';
+import {getEntries} from '../dbl';
 
 const initialState = {
   loading: false,
@@ -24,7 +22,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {loading: true});
     case FETCHED:
       const {entries} = action.payload;
-      return Object.assign({}, state, {loading: false, list: entries.map(x => ({...x.attrs}))});
+      return Object.assign({}, state, {loading: false, list: entries.sort((a, b) => b.createdAt - a.createdAt)});
     case FETCH_ERROR:
       return initialState;
     case USER_LOGOUT:
@@ -39,8 +37,7 @@ export default (state = initialState, action) => {
 export const fetchEntries = () => async (dispatch) => {
   dispatch(fetchAct());
 
-  const filter = {status: ENTRY_STATUS_ON, sort: '-createdAt'};
-  const [err, entries] = await to(Entry.fetchOwnList(filter));
+  const [err, entries] = await to(getEntries());
 
   if (err) {
     dispatch(fetchErrorAct());
