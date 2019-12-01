@@ -4,9 +4,7 @@ eslint-disable jsx-a11y/anchor-is-valid
 
 import React, {Component} from 'react';
 
-import {User, getConfig} from 'radiks';
-
-import {getUsername} from "../../../blockstack-config";
+import {userSession, getUsername} from "../../../blockstack-config";
 
 import PropTypes from 'prop-types';
 
@@ -23,8 +21,6 @@ class AuthPage extends Component {
   }
 
   doAuth = async () => {
-    const {userSession} = getConfig();
-
     if (userSession.isSignInPending()) {
       try {
         await userSession.handlePendingSignIn();
@@ -34,32 +30,12 @@ class AuthPage extends Component {
         return;
       }
 
-      // Radiks throws "Uncaught TypeError: Cannot read property 'attrs' of undefined" error for
-      // non-username accounts. This event handler is a workaround.
-      window.addEventListener('unhandledrejection', this.handleRadiksError);
-
-      await User.createWithCurrentUser();
-
       this.doLogin();
     }
   };
 
-  handleRadiksError = (ex) => {
-    if (ex.reason && ex.reason.message === "Cannot read property 'attrs' of undefined") {
-      this.doLogin();
-      console.error(ex.message);
-      return;
-    }
-
-    this.setState(({error: true}));
-  };
 
   doLogin = () => {
-    // Remove the radiks event handler.
-    window.removeEventListener('unhandledrejection', this.handleRadiksError);
-
-    const {userSession} = getConfig();
-
     const userData = userSession.loadUserData();
     const username = getUsername();
 
@@ -84,7 +60,6 @@ class AuthPage extends Component {
   login = (e) => {
     e.preventDefault();
 
-    const {userSession} = getConfig();
     userSession.signUserOut();
     userSession.redirectToSignIn();
   };

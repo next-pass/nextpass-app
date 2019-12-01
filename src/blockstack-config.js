@@ -1,20 +1,11 @@
 import {UserSession, AppConfig} from 'blockstack';
-import {configure} from 'radiks';
 import {decodeToken} from 'jsontokens';
-
-const RADIKS_URL = `https://${window.location.protocol === 'http:' ? 'radiks-dev.nextpass.co' : 'radiks.nextpass.co'}`;
 
 const domain = window.location.origin;
 
 export const userSession = new UserSession({
   appConfig: new AppConfig(['store_write', 'publish_data'], domain, '/auth', '/manifest.json')
 });
-
-configure({
-  apiServer: RADIKS_URL,
-  userSession
-});
-
 
 export const decodeUserResponseToken = () => {
   const {authResponseToken} = userSession.loadUserData();

@@ -8,7 +8,7 @@ import {Button, Form, InputGroup} from 'react-bootstrap';
 
 import NewEntryDialog from '../../dialogs/new-entry';
 
-import {getConfig} from 'radiks';
+import {userSession} from '../../../blockstack-config';
 
 import PassDialog from '../../dialogs/pass';
 
@@ -27,7 +27,6 @@ import {logOutSvg, clipboardSvg, editSvg} from '../../../svg';
 class SideBar extends Component {
   logout = () => {
     const {logout, history} = this.props;
-    const {userSession} = getConfig();
 
     userSession.signUserOut();
     logout();
