@@ -33,7 +33,7 @@ export const updateEntry = async (id, props) => {
     throw new Error('Entry not found!');
   }
 
-  const newProps = Object.assign({}, theEntry, {updated: new Date().getTime()}, props);
+  const newProps = Object.assign({updated: new Date().getTime()}, props);
 
   return save(_update(entries, id, newProps));
 };
@@ -50,12 +50,18 @@ export const _add = (list, newItem) => {
 };
 
 
-export const _update = (list, id, newProps) => {
+export const _update = (list, id, props) => {
+  const item = list.find(x => x._id === id);
+
+  if (!item) {
+    throw new Error('Item not found!');
+  }
+
   const rest = list.filter(x => x._id !== id);
 
-  const updated = Object.assign({}, newProps);
+  const newItem = Object.assign({}, item, props);
 
-  return [updated, ...rest]
+  return [newItem, ...rest]
 };
 
 

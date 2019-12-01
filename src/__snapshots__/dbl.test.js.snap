@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1- _add 1`] = `
+Array [
+  Object {
+    "_id": "1",
+    "name": "foo",
+  },
+]
+`;
+
+exports[`2- _add 1`] = `
+Array [
+  Object {
+    "_id": "1",
+    "name": "foo",
+  },
+  Object {
+    "_id": "2",
+    "name": "bar",
+  },
+]
+`;
+
+exports[`3- _add 1`] = `
+Array [
+  Object {
+    "_id": "1",
+    "name": "foo",
+  },
+  Object {
+    "_id": "2",
+    "name": "bar",
+  },
+  Object {
+    "_id": "3",
+    "name": "baz",
+  },
+]
+`;
+
+exports[`4- update 1`] = `
+Array [
+  Object {
+    "_id": "2",
+    "name": "lorem ipsum",
+    "notes": "foo bar baz",
+  },
+  Object {
+    "_id": "1",
+    "name": "foo",
+  },
+  Object {
+    "_id": "3",
+    "name": "baz",
+  },
+]
+`;
+
+exports[`5- delete 1`] = `
+Array [
+  Object {
+    "_id": "2",
+    "name": "lorem ipsum",
+    "notes": "foo bar baz",
+  },
+  Object {
+    "_id": "3",
+    "name": "baz",
+  },
+]
+`;
