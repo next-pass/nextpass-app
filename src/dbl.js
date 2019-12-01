@@ -4,6 +4,10 @@ import uuid from './utils/rnd';
 
 const FILE_PATH = 'entries.dbx';
 
+export const save = async (data) => {
+  return userSession.putFile(FILE_PATH, JSON.stringify(data), {encrypt: true});
+};
+
 export const getEntries = () => {
   return userSession.getFile(FILE_PATH).then(resp => JSON.parse(resp));
 };
@@ -17,9 +21,7 @@ export const addEntry = async (props) => {
     entries = [];
   }
 
-  const newEntries = [...entries, newEntry];
-
-  return save(newEntries);
+  return save(_add(entries, newEntry));
 };
 
 export const updateEntry = async (id, props) => {
@@ -31,23 +33,33 @@ export const updateEntry = async (id, props) => {
     throw new Error('Entry not found!');
   }
 
-  const rest = entries.filter(x => x._id !== id);
+  const newProps = Object.assign({}, theEntry, {updated: new Date().getTime()}, props);
 
-  const updated = Object.assign({}, theEntry, {updated: new Date().getTime()}, props);
-
-  const newEntries = [updated, ...rest];
-
-  return save(newEntries);
+  return save(_update(entries, id, newProps));
 };
 
 export const deleteEntry = async (id) => {
   let entries = await getEntries();
 
-  const newEntries = entries.filter(x => x._id !== id);
-
-  return save(newEntries);
+  return save(_delete(entries, id));
 };
 
-export const save = async (data) => {
-  return userSession.putFile(FILE_PATH, JSON.stringify(data), {encrypt: true});
+
+export const _add = (list, newItem) => {
+  return [...list, newItem]
 };
+
+
+export const _update = (list, id, newProps) => {
+  const rest = list.filter(x => x._id !== id);
+
+  const updated = Object.assign({}, newProps);
+
+  return [updated, ...rest]
+};
+
+
+export const _delete = (list, id) => {
+  return list.filter(x => x._id !== id)
+};
+
