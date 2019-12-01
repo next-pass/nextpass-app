@@ -4,11 +4,20 @@ import uuid from './utils/rnd';
 
 const FILE_PATH = 'entries.dbx';
 
+let _data = null;
+
 export const save = async (data) => {
-  return userSession.putFile(FILE_PATH, JSON.stringify(data), {encrypt: true});
+  return userSession.putFile(FILE_PATH, JSON.stringify(data), {encrypt: true}).then((r) => {
+    _data = data;
+    return r;
+  })
 };
 
 export const getEntries = () => {
+  if (_data) {
+    return new Promise(resolve => resolve(_data));
+  }
+
   return userSession.getFile(FILE_PATH).then(resp => JSON.parse(resp));
 };
 
